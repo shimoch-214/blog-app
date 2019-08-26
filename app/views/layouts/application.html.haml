@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title BlogApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .header
+      .header__title
+      .header__nav
+        - if user_signed_in?
+          = link_to 'マイページ', user_path(current_user), class: "header__nav--my-page"
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header__nav--sign-out"
+          -# = link_to '退会する', user_registration_path(current_user), method: :delete, class: "header__nav--destroy"
+        - else
+          = link_to 'ログイン', new_user_session_path(current_user), class: "header__nav--sign-in"
+          = link_to '登録する', new_user_registration_path(current_user), class: "header__nav--sign-up"
+    = yield
