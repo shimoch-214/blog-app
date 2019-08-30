@@ -1,0 +1,33 @@
+= form_for @article do |f|
+  .row
+    .col.s6
+      .input-field
+        = f.label :title
+        = f.text_field :title
+      %br
+      %br
+      .file-field.input_field
+        .btn
+          %span tmb
+          = f.file_field :image
+        .file-path-wrapper
+          %input{class: "file-path"}
+    .col.s6
+      .card
+        .card-image#preview
+          - if article.image.file.nil?
+            = image_tag "l_e_others_500.png", style: "object-fit: contain;", height: 200
+          - else
+            = image_tag article.image.url, style: "object-fit: contain;", height: 200
+  .row
+    .col.s3.right
+      .btn.waves-effect#mdpreview preview
+    .col.s3.right
+      .btn.waves-effect.disabled#md markdown
+  .row
+    .input-field.hidden_area
+      = f.label "content", for: "textarea3"
+      = f.text_area :content, class: "materialize-textarea", id: "textarea3"
+    #mdtarget
+  .row
+    = f.submit "Post", class: "btn"

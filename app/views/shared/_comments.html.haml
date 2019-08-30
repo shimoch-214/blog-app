@@ -1,0 +1,12 @@
+.divider
+.section
+  .row
+    .col.s2
+      -# - if comment.user.ano.file.nil?
+      -#   = image_tag "l_e_others_500.png", class: "circle", height: 50
+      -# - else
+      -#   = image_tag comment.user.ano.url, class: "circle", height: 50
+      -# %h6
+      = comment.user.name
+    .col.s10
+      = comment.content

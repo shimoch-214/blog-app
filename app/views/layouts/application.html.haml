@@ -7,15 +7,29 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
   %body
-    .header
-      .header__title
-      .header__nav
-        - if user_signed_in?
-          = link_to 'マイページ', user_path(current_user), class: "header__nav--my-page"
-          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header__nav--sign-out"
-          -# = link_to '退会する', user_registration_path(current_user), method: :delete, class: "header__nav--destroy"
-        - else
-          = link_to 'ログイン', new_user_session_path(current_user), class: "header__nav--sign-in"
-          = link_to '登録する', new_user_registration_path(current_user), class: "header__nav--sign-up"
+    .navbar-fixed
+      %nav
+        .nav-wrapper
+          = link_to "Sample Blog", root_path, class: "brand-logo center"
+          %ul#nav-mobile.hide-on-med-and-down.right
+            %li
+              %i.material-icons.medium apps
+            - if user_signed_in?
+              %li
+                = link_to "#{current_user.name.upcase}", user_path(current_user)
+              %li
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete
+            - else
+              %li
+                = link_to 'Sign In', new_user_session_path
+              %li
+                = link_to 'Sign Up', new_user_registration_path
+    .row
+      .col.s10.offset-s1
+        %h4.red-text.text-lighten-3
+          = notice
+          = alert   
     = yield

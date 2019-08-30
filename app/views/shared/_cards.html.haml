@@ -1,0 +1,21 @@
+.col.s6
+  .card.medium
+    .card-image
+      - if article.image.file.nil?
+        = image_tag "l_e_others_500.png", style: "object-fit: contain;"
+      - else
+        = image_tag article.image.url, style: "object-fit: contain;"
+    .card-content
+      %span.card-title
+        = article.title
+    .card-action.amber-text.text-darken-2
+      = link_to "See Detail", article_path(article)
+      - if params[:controller] == "articles"
+        = link_to article.user.name , user_path(article.user)
+      - elsif params[:controller] == "users" && article.user == current_user
+        = link_to "Edit", edit_article_path(article)
+        = link_to "Delete", article_path(article), method: :delete
+      %span.right
+        = "#{article.comments.count}"
+      %span.right &nbsp
+      %i.material-icons.right comment

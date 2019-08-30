@@ -1,0 +1,26 @@
+.container
+  .row
+    .col.s10.offset-s1
+      .card.grey.lighten-5
+        .card-content
+          .row.valign-wrapper
+            .col.s2
+              - if @user.ano.file.nil?
+                = image_tag "l_e_others_500.png", class: "circle responsive-img"
+              - else
+                = image_tag @user.ano.url, class: "circle responsive-img"
+            .col.s10
+              .row.valign-wrapper
+                .col.s6
+                  .card-title
+                    = @user.name
+                .col.s6
+                  %span.right
+                    = "#{@articles.length} articles"
+              %span{style: "word-wrap: break-word;"}
+                hogehogehogehogehoeghoeghoeghoegheoegehoeghoegeohkyjhgfdfghjkjhgfdsghjkjhgf;lkjhbvbnm,.jnbvc
+        - if @user == current_user
+          .card-action
+            = link_to "New Article", new_article_path
+      - if @articles.length != 0
+        = render partial: "shared/cards", collection: @articles, as: :article

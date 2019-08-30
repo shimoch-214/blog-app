@@ -1,0 +1,30 @@
+.container
+  .row
+    .col.s8.offset-s2
+      .card.horizontal
+        .card-image
+          - unless @article.image.file.nil?
+            = image_tag @article.image.url, height: 150
+        .card-stacked
+          .card-content
+            .card-title
+              = @article.title
+            .card-action
+              = link_to "#{@article.user.name}", user_path(@article.user)
+              .right
+                = "#{@article.created_at.strftime('%Y/%m/%d (%a)')}"
+              %i.material-icons.right access_time
+      .card
+        .card-content
+          %span.article-content
+            = markdown(@article.content)
+        .card-action
+          - if !@article.comments.empty?
+            .card-title Comments
+            = render partial: "shared/comments", collection: @article.comments, as: :comment
+          - else
+            .card-title No Comments
+          = form_for @comment, url: article_comments_path(@article) do |f|
+            .input-field
+              = f.label "comment"
+              = f.text_field :content

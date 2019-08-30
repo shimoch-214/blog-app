@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   root to: 'articles#index'
 
   resources :articles do
-    resources :comments, only: [:new, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
   resources :users, only: :show
+
+  namespace :api, format: 'json' do
+    resources :articles, only: :index
+  end
 end

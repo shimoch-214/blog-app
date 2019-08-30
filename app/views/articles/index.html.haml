@@ -1,1 +1,7 @@
-hoge
+.container
+  .row
+    .col.s12.red-text.text-lighten-3
+      %h2 New Articles
+  .row
+    .col.s10.offset-s1
+      = render partial: 'shared/cards', collection: @articles, as: :article

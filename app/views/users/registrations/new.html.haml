@@ -1,18 +1,20 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label "名前", for: "user_name"
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label "メール", for: "user_email"
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label "パスワード", for: "user_password"
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label "パスワードの確認", for: "user_password_confirmation"
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+.container
+  .row
+    .col.s8.offset-s2
+      %h2.blue-grey-text.text-darken-3 Sign up
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        -# = render "devise/shared/error_messages", resource: resource
+        = devise_error_messages
+        .input-field
+          = f.label "name", for: "user_name", autocomplete: 'new-text'
+          = f.text_field :name
+        .input-field
+          = f.label "e-mail", for: "user_email"
+          = f.email_field :email
+        .input-field
+          = f.label "password", for: "user_password"
+          = f.password_field :password, autocomplete: "new-password"
+        .input-field
+          = f.label "confirm password", for: "user_password_confirmation"
+          = f.password_field :password_confirmation
+        = f.submit "Sign up", class: 'btn'

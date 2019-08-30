@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   validates :email, presence: true
+  mount_uploader :ano, AnoUploader, if: :ano?
 
   has_many :articles
   has_many :comments

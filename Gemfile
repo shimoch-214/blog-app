@@ -68,3 +68,12 @@ gem 'mini_magick'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
 gem 'pry-byebug'
+gem 'jquery-rails'
+gem 'faker'
+
+# Materialize
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
+
+# Markdown
+gem 'redcarpet'
