@@ -24,3 +24,6 @@
             = link_to "New Article", new_article_path
       - if @articles.length != 0
         = render partial: "shared/cards", collection: @articles, as: :article
+  .row
+    .col.s10.offset-s1
+      = render partial: "shared/pagination"

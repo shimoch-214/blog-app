@@ -77,3 +77,6 @@ gem 'material_icons'
 
 # Markdown
 gem 'redcarpet'
+
+# pagenation
+gem 'kaminari'
